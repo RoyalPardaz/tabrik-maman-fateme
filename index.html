@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تبریک روز مامان فاطمه</title>
+    <style>
+        /* CSS برای طراحی و افکت‌ها */
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            /* پس‌زمینه مجلل: ترکیب کرم، طلایی کم‌رنگ و کمی زرشکی */
+            background: radial-gradient(circle at top left, #f5f5dc 0%, #fffacd 50%, #f0e68c 100%);
+            font-family: 'Tahoma', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* دکمه مجلل */
+        #fancyButton {
+            padding: 20px 40px;
+            font-size: 1.8em;
+            cursor: pointer;
+            border: none;
+            border-radius: 50px;
+            /* گرادیانت زرشکی و طلایی */
+            background: linear-gradient(45deg, #8b0000, #b22222, #cd853f);
+            color: white;
+            /* سایه زرشکی تیره و مجلل */
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.7), 0 0 50px rgba(139, 0, 0, 0.5);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            z-index: 5;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            letter-spacing: 1px;
+        }
+
+        #fancyButton:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(139, 0, 0, 0.9), 0 0 80px rgba(139, 0, 0, 0.7);
+        }
+
+        /* استایل متن تبریک */
+        #messageContainer {
+            margin-top: 50px;
+            font-size: 3em;
+            text-align: center;
+            color: #5d0000; /* رنگ متن تبریک: زرشکی تیره */
+            opacity: 0;
+            transform: scale(0.1);
+            position: relative;
+            z-index: 3;
+        }
+
+        /* افکت طلایی برای "مامان فاطمه" - Shimmering Gold */
+        .golden {
+            font-weight: 900;
+            display: inline-block;
+            /* گرادیانت طلایی اصلی */
+            background: linear-gradient(120deg, #ffd700, #ffec8b, #daa520, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 300% 300%;
+            animation: shimmer 4s infinite ease-in-out; 
+            margin-left: 10px;
+            /* درخشش طلایی */
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.8), 0 0 5px rgba(255, 215, 0, 0.5);
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* افکت لرزش/تکان خوردن (Jiggle/Shake) */
+        @keyframes jiggle {
+            0%, 100% { transform: scale(1.2) rotate(0deg); }
+            25% { transform: scale(1.2) rotate(-1deg); }
+            75% { transform: scale(1.2) rotate(1deg); }
+        }
+
+        .jiggle-animation {
+            animation: jiggle 0.5s ease-in-out 0s 4 alternate;
+        }
+
+        /* متن امضا در پایین صفحه - با افکت Fade-in */
+        #signature {
+            position: absolute;
+            bottom: 30px;
+            font-size: 1.4em;
+            color: #483d8b; /* رنگ بنفش تیره و متناسب */
+            font-style: italic;
+            opacity: 0;
+            transition: opacity 1.5s ease 1.5s;
+        }
+
+        /* افکت برف شادی (Confetti) */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            opacity: 0;
+            z-index: 10;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+
+    <button id="fancyButton">👑 روی من کلیک کن! 👑</button>
+
+    <div id="messageContainer">
+        <span class="golden">مامان فاطمه</span>
+        <span>جون روزت مبارک</span>
+    </div>
+
+    <div id="signature">از طرف عرفان</div>
+
+    <script>
+        const button = document.getElementById('fancyButton');
+        const messageContainer = document.getElementById('messageContainer');
+        const signature = document.getElementById('signature');
+        const body = document.body;
+
+        button.addEventListener('click', () => {
+            // 1. نمایش پیام با افکت زوم فنری
+            messageContainer.style.transition = 'opacity 0.8s ease, transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            messageContainer.style.opacity = '1';
+            messageContainer.style.transform = 'scale(1.2)';
+
+            // 2. اضافه کردن افکت لرزش/تکان خوردن
+            setTimeout(() => {
+                messageContainer.classList.add('jiggle-animation');
+                setTimeout(() => {
+                    messageContainer.classList.remove('jiggle-animation');
+                    messageContainer.style.transform = 'scale(1)';
+                }, 2500);
+            }, 800);
+
+            // 3. پنهان کردن دکمه
+            button.style.opacity = '0';
+            button.style.pointerEvents = 'none';
+            button.style.transform = 'scale(0.5)';
+
+            // 4. نمایش امضا
+            signature.style.opacity = '1';
+
+            // 5. اجرای افکت برف شادی (Confetti)
+            launchConfetti();
+        });
+
+        function launchConfetti() {
+            // رنگ‌های جدید: زرشکی، طلایی، فیروزه‌ای، قرمز تیره
+            const colors = ['#8b0000', '#ffd700', '#40e0d0', '#dc143c', '#ff8c00', '#7b68ee'];
+            const startX = button.offsetLeft + button.offsetWidth / 2;
+            const startY = button.offsetTop + button.offsetHeight / 2;
+
+            for (let i = 0; i < 70; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                const size = Math.random() * 8 + 5;
+                confetti.style.width = `${size}px`;
+                confetti.style.height = `${size}px`;
+                confetti.style.borderRadius = (Math.random() > 0.5) ? '50%' : '2px';
+                
+                confetti.style.left = `${startX + (Math.random() - 0.5) * 50}px`;
+                confetti.style.top = `${startY + (Math.random() - 0.5) * 50}px`;
+
+                const duration = Math.random() * 3 + 4;
+                const delay = Math.random() * 2;
+                
+                confetti.style.animation = `fall ${duration}s ease-in forwards`;
+                confetti.style.animationDelay = `${delay}s`;
+                
+                // نیازی به تعریف --end-x و --end-y نیست، انیمیشن fall موقعیت نهایی را تنظیم می‌کند
+                
+                body.appendChild(confetti);
+
+                setTimeout(() => confetti.remove(), (duration + delay) * 1000 + 100);
+            }
+        }
+    </script>
+</body>
+</html>
